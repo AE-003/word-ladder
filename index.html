@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Ladder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <h1>Word Ladder</h1>
+    <div class="modes" role="tablist" aria-label="Game mode">
+      <button class="mode-btn active" data-mode="daily">Daily</button>
+      <button class="mode-btn" data-mode="random">Random</button>
+      <button class="mode-btn" data-mode="custom">Custom</button>
+    </div>
+    <button id="statsBtn" class="icon-btn" title="Statistics" aria-label="Statistics">📊</button>
+    <button id="helpBtn" class="icon-btn" title="How to play" aria-label="How to play">❔</button>
+  </header>
+
+  <p class="subtitle" id="puzzleLabel">Change one letter at a time to turn the start word into the target word.</p>
+
+  <div id="customPanel" class="custom-panel hidden">
+    <input id="customStart" maxlength="4" placeholder="START" autocomplete="off" spellcheck="false">
+    <span class="arrow">→</span>
+    <input id="customTarget" maxlength="4" placeholder="TARGET" autocomplete="off" spellcheck="false">
+    <button id="customGo" class="btn">Build puzzle</button>
+  </div>
+
+  <div class="board">
+    <div class="rail">
+      <div class="rail-word start-word" id="startWordDisplay"></div>
+      <div class="chain" id="chain"></div>
+      <div class="rail-word target-word" id="targetWordDisplay"></div>
+    </div>
+  </div>
+
+  <form id="guessForm" class="guess-row">
+    <input id="guessInput" class="guess-input" maxlength="4" autocomplete="off" spellcheck="false" autocapitalize="characters" placeholder="next word">
+    <button type="submit" class="btn primary">Submit</button>
+  </form>
+
+  <div class="toolbar">
+    <button id="hintBtn" class="btn ghost">💡 Hint</button>
+    <button id="giveUpBtn" class="btn ghost">🏳️ Give up</button>
+    <span class="step-counter" id="stepCounter">0 steps</span>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="winModal" class="modal hidden">
+    <div class="modal-card">
+      <h2 id="winTitle">Solved! 🎉</h2>
+      <p id="winDetail"></p>
+      <div class="stats-grid" id="statsGrid"></div>
+      <div class="dist" id="distChart"></div>
+      <button id="closeWin" class="btn primary">Close</button>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>How to play</h2>
+      <ul class="help-list">
+        <li>Turn the <strong>start</strong> word into the <strong>target</strong> word.</li>
+        <li>Each step, change <strong>exactly one letter</strong> and submit a real word.</li>
+        <li>Letters that already match the target's letter in that position glow green.</li>
+        <li>Stuck? Use a <strong>Hint</strong> — it costs a point off your final score but reveals the next best word.</li>
+        <li><strong>Daily</strong> gives everyone the same puzzle each day. <strong>Random</strong> gives a fresh curated puzzle. <strong>Custom</strong> lets you pick your own start/target words (must be real, connected 4-letter words).</li>
+      </ul>
+      <button id="closeHelp" class="btn primary">Got it</button>
+    </div>
+  </div>
+
+  <div id="statsModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Statistics</h2>
+      <div class="stats-grid" id="statsGridStandalone"></div>
+      <div class="dist" id="distChartStandalone"></div>
+      <button id="closeStats" class="btn primary">Close</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="words.js"></script>
+<script src="puzzles.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
